@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NoteTaker</title>
+  <link rel="stylesheet" href="/vendor/easymde.min.css" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Left sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <span class="brand">📝 NoteTaker</span>
+        <div class="header-actions">
+          <button id="theme-toggle" title="Toggle light/dark" class="icon-btn">🌙</button>
+        </div>
+      </div>
+
+      <div class="sidebar-controls">
+        <button id="new-note-btn" class="primary-btn">＋ New note</button>
+        <input id="search-input" type="search" placeholder="Search notes…  (try #tag)" autocomplete="off" />
+      </div>
+
+      <div id="tag-filters" class="tag-filters"></div>
+
+      <ul id="note-list" class="note-list"></ul>
+    </aside>
+
+    <!-- Center: editor -->
+    <main id="editor-pane">
+      <div id="editor-header" class="editor-header hidden">
+        <input id="title-input" class="title-input" type="text" placeholder="Untitled note" />
+        <div class="editor-header-actions">
+          <span id="save-status" class="save-status"></span>
+          <button id="delete-btn" class="icon-btn danger" title="Delete note">🗑</button>
+        </div>
+      </div>
+      <div id="editor-container">
+        <textarea id="editor"></textarea>
+      </div>
+      <div id="empty-state" class="empty-state">
+        <div>
+          <h2>Welcome to NoteTaker</h2>
+          <p>Select a note on the left, or create a new one.</p>
+          <p class="hint">Tip: link notes with <code>[[Note title]]</code> and tag them with <code>#topic</code>.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right side panel -->
+    <aside id="side-panel">
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-tab="backlinks">Backlinks</button>
+        <button class="panel-tab" data-tab="graph">Graph</button>
+      </div>
+      <div id="tab-backlinks" class="panel-body active">
+        <ul id="backlinks-list" class="backlinks-list"></ul>
+        <p id="backlinks-empty" class="panel-empty">No backlinks yet.</p>
+      </div>
+      <div id="tab-graph" class="panel-body">
+        <div id="graph"></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Wiki-link autocomplete dropdown (positioned dynamically) -->
+  <div id="autocomplete" class="autocomplete hidden"></div>
+
+  <script src="/vendor/marked.min.js"></script>
+  <script src="/vendor/easymde.min.js"></script>
+  <script src="/vendor/vis-network.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
